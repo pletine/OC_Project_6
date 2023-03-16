@@ -9,13 +9,18 @@
   </head>
   <body>
     <header>
-        <img src="assets/images/logo.png" class="logo" />
+        <a href="index.html" alt="Fisheye Home page"><img src="assets/images/logo.png" class="logo" /></a>
         <h1>Nos photographes</h1>
     </header>
     <main id="main">
         <div class="photographer_section"></div>
     </main>
-    <script src="scripts/factories/photographer.js"></script>
-    <script src="scripts/pages/index.js"></script>
+    <script src="scripts/model/model.js"></script>
+    <script src="scripts/views/photographerListView.js"></script>
+    <script src="scripts/controllers/controller.js"></script>
+    <script>
+      let controller = new Controller();
+      controller.displayPhotographersController();
+    </script>
   </body>
 </html>

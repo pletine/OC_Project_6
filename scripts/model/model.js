@@ -6,7 +6,7 @@ class Model {
 
     async getData() {
         if(this.data == null) {
-            const response = await fetch('../../data/photographers.json', {
+            const response = await fetch(window.location.pathname + 'data/photographers.json', {
                 method: 'GET',
                 headers: {
                     'Accept': 'application/json',

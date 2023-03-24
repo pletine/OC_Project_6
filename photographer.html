@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <link rel="icon" type="image/png" href="assets/favicon.png">
     <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
-    <title>Fisheye - photographe </title>
+    <title>Fisheye - photographe</title>
   </head>
   <body>
     <header>
@@ -31,7 +31,13 @@
 				</form>
 			</div>
 		</div>
+    <script src="scripts/model/model.js"></script>
+    <script src="scripts/views/photographerView.js"></script>
     <script src="/scripts/controllers/photographer.js"></script>
     <script src="/scripts/utils/contactForm.js"></script>
+    <script>
+      let photographer = new Photographer();
+      photographer.getPhotographerData();
+    </script>
   </body>
 </html>

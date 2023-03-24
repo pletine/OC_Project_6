@@ -11,15 +11,15 @@ class PhotographerListView {
     displayOnePhotographer(photographer) {
         let html = `
             <article>
-                <a href="photographer.html">
+                <a href="photographer.html?id=${photographer.id}" aria-label="Aller sur la page de ${photographer.name}">
                     <div class="profile_picture" 
                         style="background-image: url('assets/photographers/${photographer.portrait}')">
                     </div>
-                    <h2 onclick="controller.do()">${photographer.name}</h2>
+                    <h2 onclick="controller.do()" aria-label="Nom du photographe ${photographer.name}">${photographer.name}</h2>
                 </a>
-                <p class="loc">${photographer.city}, ${photographer.country}</p>
-                <p class="activity">${photographer.tagline}</p>
-                <p class="price">${photographer.price}€/jour</p>
+                <p class="loc" aria-label="Ville">${photographer.city}, ${photographer.country}</p>
+                <p class="activity" aria-label="Slogan">${photographer.tagline}</p>
+                <p class="price" aria-label="Tarif">${photographer.price}€/jour</p>
             </article>
         `;
         return html;

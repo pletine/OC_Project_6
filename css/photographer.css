@@ -2,10 +2,21 @@
     display: none;
 }
 
+/* Photographer header */
 .photograph-header {
     background-color: #FAFAFA;
     height: 300px;
     margin: 0 100px;
+
+    display: flex;
+    flex-grow: row nowrap;
+    flex: 1 1;
+    justify-content: space-around;
+}
+
+.photograph-header img {
+    border-radius: 50%;
+    object-fit: cover;
 }
 
 .contact_button {
@@ -21,6 +32,7 @@
     cursor: pointer;
 }
 
+/* Modal */
 .modal {
     border-radius: 5px;
     background-color: #DB8876;

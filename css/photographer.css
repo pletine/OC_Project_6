@@ -9,7 +9,7 @@
     margin: 0 100px;
 
     display: flex;
-    flex-grow: row nowrap;
+    flex-flow: row nowrap;
     flex: 1 1;
     justify-content: space-around;
 }
@@ -31,6 +31,25 @@
     border-radius: 5px;
     cursor: pointer;
 }
+
+.photographer-portfolio {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+}
+
+/* .photographer-portfolio figure {
+    
+} */
+
+.photographer-portfolio figure img {
+    width: 350px;
+    height: 300px;
+    border-radius: 20px;
+    object-fit: cover;
+    overflow: hidden;
+}
+
 
 /* Modal */
 .modal {

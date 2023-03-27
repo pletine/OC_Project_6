@@ -1,8 +1,18 @@
 class PhotographerView {
     displayPhotographer(photographer, media) {
+        let main = document.querySelector('#main');
+        let modal = document.querySelector('#contact_modal');
+        
+        /* Adapt page if error */
+        if(photographer === null || media === null) {
+            main.innerHTML = `<h1>Erreur dans la récupération du photographe ou des médias</h1>`
+            return;
+        }
+
         let firstName = photographer.name.split(' ')[0].replace('-', ' ');
         let portfolio = ``;
 
+        /* Create Media Portfolio */
         media.forEach (function(elem) {
             if(elem.image === undefined){
                 console.log('Element non défini');
@@ -16,7 +26,8 @@ class PhotographerView {
             }
         });
 
-        let main = document.querySelector('#main');
+
+        /* Write Main content */
         main.innerHTML = `
             <div class="photograph-header">
                 <section class="photographer-presentation">
@@ -36,7 +47,7 @@ class PhotographerView {
             </div>
         `;
 
-        let modal = document.querySelector('#contact_modal');
+        /* Create Modal content */
         modal.innerHTML = `
             <div class="modal">
                 <header>
@@ -52,5 +63,7 @@ class PhotographerView {
                 </form>
             </div>
         `;
+
+        return;
     }
 }

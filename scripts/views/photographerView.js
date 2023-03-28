@@ -2,13 +2,12 @@ class PhotographerView {
     displayPhotographer(photographer, media) {
         let main = document.querySelector('#main');
         let modal = document.querySelector('#contact_modal');
-        
+
         /* Adapt page if error */
-        if(photographer === null || media === null) {
+        if(photographer == null || media == null) {
             main.innerHTML = `<h1>Erreur dans la récupération du photographe ou des médias</h1>`
             return;
         }
-
         let firstName = photographer.name.split(' ')[0].replace('-', ' ');
         let portfolio = ``;
 
@@ -19,10 +18,11 @@ class PhotographerView {
                 console.log(elem);
             } else {
                 portfolio += `
-                <figure>
-                    <img src="assets/images/${firstName}/${elem.image}" alt="">
-                    <figcaption>${elem.title}</figcaption>
-                </figure>`;
+                    <figure>
+                        <img src="assets/images/${firstName}/${elem.image}" alt="">
+                        <figcaption>${elem.title}</figcaption>
+                    </figure>
+                `;
             }
         });
 
@@ -40,6 +40,12 @@ class PhotographerView {
             </div>
             <div class="photographer-media">
                 <form>
+                    <label for="optionTri">Tier par</label>
+                    <select size="1" name="optionTri" id="optionTri">
+                        <option value="popularite">Popularité</option>
+                        <option value="date">Date</option>
+                        <option value="titre">Titre</option>
+                    </select>
                 </form>
                 <div class="photographer-portfolio">
                     ${portfolio}

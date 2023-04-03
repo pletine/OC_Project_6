@@ -12,9 +12,10 @@ class PhotographerListView {
         let html = `
             <article>
                 <a href="photographer.html?id=${photographer.id}" aria-label="Aller sur la page de ${photographer.name}">
-                    <div class="profile_picture"
-                        style="background-image: url('assets/photographers/${photographer.portrait}')">
-                    </div>
+                    <img 
+                        src="assets/photographers/${photographer.portrait}" 
+                        alt=""
+                    >
                     <h2 onclick="controller.do()" aria-label="Nom du photographe ${photographer.name}">${photographer.name}</h2>
                 </a>
                 <p class="loc" aria-label="Ville">${photographer.city}, ${photographer.country}</p>

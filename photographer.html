@@ -5,20 +5,26 @@
     <meta charset="utf-8">
     <link rel="icon" type="image/png" href="assets/favicon.png">
     <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/cb7e953be4.js" crossorigin="anonymous"></script>
     <title>Fisheye - photographe</title>
   </head>
+  
   <body>
     <header>
       <a href="index.html">
         <img src="assets/images/logo.png" alt="Fisheye Home page" class="logo" />
       </a>
     </header>
+
     <main id="main"></main>
     <div id="contact_modal"></div>
+    <div id="lightbox_modal"></div>
+
     <script src="scripts/model/model.js"></script>
     <script src="scripts/views/photographerView.js"></script>
     <script src="/scripts/controllers/controller.js"></script>
     <script src="/scripts/utils/contactForm.js"></script>
+    <script src="scripts/utils/mediaFactory.js"></script>
     <script>
       let controller = new Controller();
       controller.displayPhotographerController();

@@ -9,13 +9,16 @@ class Model {
      * @returns URL Params
      */
     getUrlParams() {
-        let params = Object.fromEntries(new URLSearchParams(document.location.search));
-        return params;
+        return Object.fromEntries(new URLSearchParams(document.location.search));
     }
 
+    /**
+     * Retourne le paramètre désiré à partir du nom en paramètre
+     * @param {Nom du paramètre souhaité} name 
+     * @returns 
+     */
     getUrlParamByName(name) {
-        let param = this.getUrlParams()[name];
-        return param;
+        return this.getUrlParams()[name];
     }
 
     /**
@@ -45,7 +48,7 @@ class Model {
     }
 
     /**
-     * 
+     * Récupération des données d'un photographer selon l'id donné en paramètre
      * @param {Id of the photographer} photographerId
      * @returns Photographer data in an object
      */
@@ -61,7 +64,8 @@ class Model {
     }
 
     /**
-     * Extraction des médias contenues dans le document "photographes.json"
+     * Extraction des médias contenues dans le document "photographes.json" selon l'id du photographer
+     * @param {Id of the photographer} photographerId
      * @returns Media data
      */
     async getMediaById(idPhotographer) {

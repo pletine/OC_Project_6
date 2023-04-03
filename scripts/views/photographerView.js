@@ -8,24 +8,15 @@ class PhotographerView {
             main.innerHTML = `<h1>Erreur dans la récupération du photographe ou des médias</h1>`
             return;
         }
-        let firstName = photographer.name.split(' ')[0].replace('-', ' ');
+        
         let portfolio = ``;
+        let photographerLikes = 0;
 
         /* Create Media Portfolio */
-        media.forEach (function(elem) {
-            if(elem.image === undefined){
-                console.log('Element non défini');
-                console.log(elem);
-            } else {
-                portfolio += `
-                    <figure>
-                        <img src="assets/images/${firstName}/${elem.image}" alt="">
-                        <figcaption>${elem.title}</figcaption>
-                    </figure>
-                `;
-            }
+        media.forEach ((elem) => {
+            portfolio += MediaFactory.createMediaFigure(photographer.name, elem);
+            photographerLikes += elem.likes;
         });
-
 
         /* Write Main content */
         main.innerHTML = `
@@ -51,20 +42,28 @@ class PhotographerView {
                     ${portfolio}
                 </div>
             </div>
+            <div class="photographer-likes">
+                <p>${photographerLikes}<i class="fa-solid fa-heart"></i></p>
+                <p>${photographer.price}€/jour</p>
+            </div>
         `;
 
         /* Create Modal content */
         modal.innerHTML = `
             <div class="modal">
                 <header>
-                    <h2>Contactez-moi</h2>
+                    <h2>Contactez-moi<br/>${photographer.name}</h2>
                     <img src="assets/icons/close.svg" onclick="closeModal()" />
                 </header>
                 <form>
-                    <div>
-                        <label>Prénom</label>
-                        <input />
-                    </div>
+                    <label>Prénom</label>
+                    <input type="text"/>
+                    <label>Nom</label>
+                    <input type="text"/>
+                    <label>Email</label>
+                    <input type="text"/>
+                    <label>Votre message</label>
+                    <input type="text"/>
                     <button class="contact_button">Envoyer</button>
                 </form>
             </div>

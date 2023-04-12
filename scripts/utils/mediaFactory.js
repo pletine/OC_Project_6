@@ -10,9 +10,9 @@ class MediaFactory {
         let html = ``;
 
         if(media.image) {
-            html = `<img src="assets/images/${firstName}/${media.image}" alt="">`;
+            html = `<img src="assets/images/${firstName}/${media.image}" alt="" onclick="displayLightbox()">`;
         } else if(media.video) {
-            html = `<video controls muted>
+            html = `<video controls muted onclick="displayLightbox()">
                         <source src="assets/images/${firstName}/${media.video}" type="video/mp4">
                         Your browser does not support the video tag !
                     </video>`;

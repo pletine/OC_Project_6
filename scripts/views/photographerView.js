@@ -1,7 +1,8 @@
 class PhotographerView {
     displayPhotographer(photographer, media) {
         let main = document.querySelector('#main');
-        let modal = document.querySelector('#contact_modal');
+        let contact_modal = document.querySelector('#contact_modal');
+        let lightbox_modal = document.querySelector('#lightbox_modal');
 
         /* Adapt page if error */
         if(photographer == null || media == null) {
@@ -48,26 +49,34 @@ class PhotographerView {
             </div>
         `;
 
-        /* Create Modal content */
-        modal.innerHTML = `
-            <div class="modal">
+        /* Create Contact Modal Content */
+        contact_modal.innerHTML = `
+            <div class="contact_modal">
                 <header>
                     <h2>Contactez-moi<br/>${photographer.name}</h2>
                     <img src="assets/icons/close.svg" onclick="closeModal()" />
                 </header>
                 <form>
-                    <label>Prénom</label>
-                    <input type="text"/>
-                    <label>Nom</label>
-                    <input type="text"/>
-                    <label>Email</label>
-                    <input type="text"/>
-                    <label>Votre message</label>
-                    <input type="text"/>
+                    <label for="firstname">Prénom</label>
+                    <input id="firstname" name="firstname" type="text" placeholder="Ex: John"/>
+                    <label for="lastname">Nom</label>
+                    <input id="lastname" name="lastname" type="text" placeholder="Ex: Doe"/>
+                    <label for="email">Email</label>
+                    <input id="email" name="email" type="text" placeholder="Ex: john.doe@example.com"/>
+                    <label for="message">Votre message</label>
+                    <input id="message" name="message" type="text"/>
                     <button class="contact_button">Envoyer</button>
                 </form>
             </div>
         `;
+        
+        /* Create Lightbox Modal Content */
+        lightbox_modal.innerHTML = `<div class="lightbox_modal">`
+            + `<img src="assets/icons/close.svg" onclick="closeLightbox()" fill="red" alt="Fermer la lightbox"/>`
+            + `<a class="Back" onclick="plusSlides(-1)">&#10094;</a>`
+            + portfolio
+            + `<a class="forward" onclick="plusSlides(1)">&#10095;</a>`
+            + `</div>`
 
         return;
     }

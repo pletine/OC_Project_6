@@ -10,7 +10,7 @@ class MediaFactory {
         let html = ``;
 
         if(media.image) {
-            html = `<img src="assets/images/${firstName}/${media.image}" alt="" onclick="displayLightbox()">`;
+            html = `<img src="assets/images/${firstName}/${media.image}" alt="" onclick="LightboxFactory.display()">`;
         } else if(media.video) {
             html = `<video controls muted onclick="displayLightbox()">
                         <source src="assets/images/${firstName}/${media.video}" type="video/mp4">

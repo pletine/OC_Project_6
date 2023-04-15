@@ -1,0 +1,40 @@
+.lightbox_modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    background-color: #fff;
+    
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    padding: 35px;
+}
+
+.lightbox_modal > a {
+    height: 100%;
+    width: 60px;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid red;
+}
+ 
+.lightbox_modal > img {
+    position: fixed;
+    right: 50px;
+    top: 50px;
+    cursor: pointer;
+    fill: red;
+    background-color: green;
+}
+
+.lightbox_modal figure img,
+.lightbox_modal figure video {
+    width: 50%;
+}
+
+.lightbox_modal figcaption {
+    display: none;
+}

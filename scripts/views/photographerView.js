@@ -27,7 +27,7 @@ class PhotographerView {
                     <h2>${photographer.city}, ${photographer.country}</h2>
                     <p>${photographer.tagline}</p>
                 </section>
-                <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
+                <button class="contact_button" onclick="ContactFormFactory.display()">Contactez-moi</button>
                 <img src="assets/photographers/${photographer.portrait}" alt="Image de profile du photographe">
             </div>
             <div class="photographer-media">
@@ -54,25 +54,38 @@ class PhotographerView {
             <div class="contact_modal">
                 <header>
                     <h2>Contactez-moi<br/>${photographer.name}</h2>
-                    <img src="assets/icons/close.svg" onclick="closeModal()" />
+                    <img src="assets/icons/close.svg" onclick="ContactFormFactory.close()" />
                 </header>
-                <form>
-                    <label for="firstname">Prénom</label>
-                    <input id="firstname" name="firstname" type="text" placeholder="Ex: John"/>
-                    <label for="lastname">Nom</label>
-                    <input id="lastname" name="lastname" type="text" placeholder="Ex: Doe"/>
-                    <label for="email">Email</label>
-                    <input id="email" name="email" type="text" placeholder="Ex: john.doe@example.com"/>
-                    <label for="message">Votre message</label>
-                    <input id="message" name="message" type="text"/>
-                    <button class="contact_button">Envoyer</button>
+                <form name="contact_form" action="" method=get
+                    onsubmit="return validate();">
+                    <div class="formData">
+                        <label for="firstname">Prénom</label>
+                        <input id="firstname" name="firstname" type="text" placeholder="Ex: John"/>
+                    </div>
+                    <div class="formData">
+                        <label for="lastname">Nom</label>
+                        <input id="lastname" name="lastname" type="text" placeholder="Ex: Doe"/>
+                    </div>
+                    <div class="formData">
+                        <label for="email">Email</label>
+                        <input id="email" name="email" type="text" placeholder="Ex: john.doe@example.com"/>
+                    </div>
+                    <div class="formData">
+                        <label for="message">Votre message</label>
+                        <input id="message" name="message" type="text"/>
+                    </div>
+                    <input
+                        class="contact_button"
+                        type="submit"
+                        value="Envoyer"
+                    />
                 </form>
             </div>
         `;
         
         /* Create Lightbox Modal Content */
         lightbox_modal.innerHTML = `<div class="lightbox_modal">`
-            + `<img src="assets/icons/close.svg" onclick="closeLightbox()" fill="red" alt="Fermer la lightbox"/>`
+            + `<img src="assets/icons/close.svg" onclick="LightboxFactory.close()" fill="red" alt="Fermer la lightbox"/>`
             + `<a class="Back" onclick="plusSlides(-1)">&#10094;</a>`
             + portfolio
             + `<a class="forward" onclick="plusSlides(1)">&#10095;</a>`

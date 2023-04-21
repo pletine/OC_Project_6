@@ -1,4 +1,9 @@
 .lightbox_modal {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    padding: 35px;
+
     position: fixed;
     top: 0;
     left: 0;
@@ -6,21 +11,16 @@
     height: 100%;
     z-index: 10;
     background-color: #fff;
-    
-    display: flex;
-    flex-flow: row nowrap;
-    align-items: center;
-    padding: 35px;
 }
 
 .lightbox_modal > a {
     height: 100%;
-    width: 60px;
+    width: 5%;
     align-items: center;
     justify-content: center;
     border: 1px solid red;
 }
- 
+
 .lightbox_modal > img {
     position: fixed;
     right: 50px;
@@ -30,11 +30,18 @@
     background-color: green;
 }
 
-.lightbox_modal figure img,
-.lightbox_modal figure video {
-    width: 50%;
+.lightbox_modal .media {
+    display: none;
+    height: 95%;
+    width: 90%;
+    justify-content: center;
+    align-items: center;
+    background-color: green;
 }
 
-.lightbox_modal figcaption {
-    display: none;
+.lightbox_modal .media img,
+.lightbox_modal .media video {
+    object-fit: cover;
+    width: 90%;
+    height: 90%;
 }

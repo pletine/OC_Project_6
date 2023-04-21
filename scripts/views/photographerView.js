@@ -9,15 +9,11 @@ class PhotographerView {
             main.innerHTML = `<h1>Erreur dans la récupération du photographe ou des médias</h1>`
             return;
         }
-        
-        let portfolio = ``;
-        let photographerLikes = 0;
+
+        let media_treated = media; // Variable to modify and manage media
 
         /* Create Media Portfolio */
-        media.forEach ((elem) => {
-            portfolio += MediaFactory.createMediaFigure(photographer.name, elem);
-            photographerLikes += elem.likes;
-        });
+        let portfolio = MediaFactory.createPortofolio(photographer.name, media_treated);
 
         /* Write Main content */
         main.innerHTML = `
@@ -40,56 +36,32 @@ class PhotographerView {
                     </select>
                 </form>
                 <div class="photographer-portfolio">
-                    ${portfolio}
+                    ${portfolio.html}
                 </div>
             </div>
             <div class="photographer-likes">
-                <p>${photographerLikes}<i class="fa-solid fa-heart"></i></p>
+                <p>${portfolio.likes}<i class="fa-solid fa-heart"></i></p>
                 <p>${photographer.price}€/jour</p>
             </div>
         `;
 
         /* Create Contact Modal Content */
-        contact_modal.innerHTML = `
-            <div class="contact_modal">
-                <header>
-                    <h2>Contactez-moi<br/>${photographer.name}</h2>
-                    <img src="assets/icons/close.svg" onclick="ContactFormFactory.close()" />
-                </header>
-                <form name="contact_form" action="" method=get
-                    onsubmit="return validate();">
-                    <div class="formData">
-                        <label for="firstname">Prénom</label>
-                        <input id="firstname" name="firstname" type="text" placeholder="Ex: John"/>
-                    </div>
-                    <div class="formData">
-                        <label for="lastname">Nom</label>
-                        <input id="lastname" name="lastname" type="text" placeholder="Ex: Doe"/>
-                    </div>
-                    <div class="formData">
-                        <label for="email">Email</label>
-                        <input id="email" name="email" type="text" placeholder="Ex: john.doe@example.com"/>
-                    </div>
-                    <div class="formData">
-                        <label for="message">Votre message</label>
-                        <input id="message" name="message" type="text"/>
-                    </div>
-                    <input
-                        class="contact_button"
-                        type="submit"
-                        value="Envoyer"
-                    />
-                </form>
-            </div>
-        `;
+        let list_input = [
+            ["first", "Prénom", "text", "Ex: John"],
+            ["last", "Nom", "text", "Ex: Doe"],
+            ["email", "E-Mail", "text", "Ex: john.doe@email.com"],
+            ["message", "Message", "text"],
+        ]
+        contact_modal.innerHTML = 
+            `<div class="contact_modal">` 
+            + ContactFormFactory.create(true, photographer.name, list_input)
+            + `</div>`;
         
         /* Create Lightbox Modal Content */
-        lightbox_modal.innerHTML = `<div class="lightbox_modal">`
-            + `<img src="assets/icons/close.svg" onclick="LightboxFactory.close()" fill="red" alt="Fermer la lightbox"/>`
-            + `<a class="Back" onclick="plusSlides(-1)">&#10094;</a>`
-            + portfolio
-            + `<a class="forward" onclick="plusSlides(1)">&#10095;</a>`
-            + `</div>`
+        lightbox_modal.innerHTML = 
+            `<div class="lightbox_modal">`
+            + LightboxFactory.create(photographer.name, media_treated)
+            + `</div>`;
 
         return;
     }

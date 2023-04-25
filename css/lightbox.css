@@ -1,47 +1,61 @@
-.lightbox_modal {
-    display: flex;
-    flex-flow: row nowrap;
-    align-items: center;
-    padding: 35px;
-
+#lightbox_modal {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     z-index: 10;
-    background-color: #fff;
+    background-color: white;
 }
 
-.lightbox_modal > a {
-    height: 100%;
-    width: 5%;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid red;
+#lightbox_modal button {
+    color: red;
+    border: none;
+    background-color: white;
+    backdrop-filter: brightness(60%);
+    font-size: xx-large;
+    z-index: 11;
 }
 
-.lightbox_modal > img {
+#btn-close {
     position: fixed;
-    right: 50px;
-    top: 50px;
-    cursor: pointer;
-    fill: red;
-    background-color: green;
+    top: 20px;
+    right: 80px;
+    width: 50px;
+    height: 50px;
+    border-radius: 25%;
 }
 
-.lightbox_modal .media {
-    display: none;
-    height: 95%;
-    width: 90%;
+#btn-goPrec, #btn-goNext {
+    position: fixed;
+    top: 0;
+    height: 100%;
+    width: 50px;
     justify-content: center;
     align-items: center;
-    background-color: green;
 }
 
-.lightbox_modal .media img,
-.lightbox_modal .media video {
+#btn-goPrec {
+    left: 0;
+}
+
+#btn-goNext {
+    right: 0;
+}
+
+#lightbox-image {
+    display: flex;
+    position: fixed;
+    top: 2%;
+    left: 50px;
+    height: 96%;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+#lightbox-image > * {
+    max-width: 100%;
+    max-height: 100%;
     object-fit: cover;
-    width: 90%;
-    height: 90%;
 }

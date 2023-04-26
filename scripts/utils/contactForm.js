@@ -1,44 +1,60 @@
-class ContactFormFactory  {
-    static create(valid_button_b, name, listChamps) {
-        let header = 
+class ContactForm  {
+    constructor(namePhotographer) {
+        this.htmlContactForm = document.querySelector('#contact_modal');
+
+        /* Create div to manipulate */
+        this.contactDiv = document.createElement('div');
+        this.contactDiv.setAttribute('class', 'contact_modal');
+        this.htmlContactForm.appendChild(this.contactDiv);
+
+        /* List of inputs to create in the form */
+        let listChamps = [
+            ["first", "Prénom", "text", "Ex: John"],
+            ["last", "Nom", "text", "Ex: Doe"],
+            ["email", "E-Mail", "text", "Ex: john.doe@email.com"],
+            ["message", "Message", "text"],
+        ]
+
+        this.contactDiv.innerHTML =
             `<header>
-                <h2>Contactez-moi<br/>${name}</h2>
-                <img src="assets/icons/close.svg" onclick="ContactFormFactory.close()" />
-            </header>`;
-        let form_start = `<form name="contact_form" action="" method=get
-                            onsubmit="return validate();">`;
-        let form_end = `</form>`;
-        let validation = 
-            `<input
-                class="contact_button"
-                type="submit"
-                value="Envoyer"
-            />`
+                <h2>Contactez-moi<br/>${namePhotographer}</h2>
+                <img src="assets/icons/close.svg"/>
+            </header>
+            <form name="contact_form" action="" method=get
+                onsubmit="return validate();">
+            </form>`;
         
-        let form = ``;
+        let formDiv = this.contactDiv.querySelector('form');
         listChamps.forEach((elem) => {
-            form += 
+            formDiv.innerHTML += 
                 `<div class="formData">
                     <label for="${elem[0]}">${elem[1]}</label>
                     <input id="${elem[0]}" name="${elem[0]}" type="${elem[2]}" placeholder="${elem[3]?elem[3]:""}"/>
                 </div>`
         });
+        formDiv.innerHTML += 
+            `<input
+                class="contact_button"
+                type="submit"
+                value="Envoyer"
+            />`;
 
-        let html = header + form_start + form;
-        if(valid_button_b) {html += validation}
-        html += form_end;
-
-        return html;
+        this.initEventListener();
     }
 
-    static display() {
-        const modal = document.getElementById("contact_modal");
-        modal.style.display = "block";
+    display() {
+        this.htmlContactForm.style.display = "block";
     }
     
-    static close() {
-        const modal = document.getElementById("contact_modal");
-        modal.style.display = "none";
+    close() {
+        this.htmlContactForm.style.display = "none";
+    }
+
+    initEventListener() {
+        let closeButton = this.contactDiv.querySelector('header > img');
+        closeButton.addEventListener('click', () => {
+            this.close();
+        });
     }
 }
 

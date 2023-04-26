@@ -1,7 +1,5 @@
 class PhotographerView {
     displayPhotographer(photographer, media_photographer) {
-        let contact_modal = document.querySelector('#contact_modal');
-
         /* Adapt page if error */
         if(photographer == null || media_photographer == null) {
             let page = document.querySelector('#main');
@@ -84,16 +82,11 @@ class PhotographerView {
             <p>${photographer.price}€/jour</p>`
 
         /* Create Contact Modal Content */
-        let list_input = [
-            ["first", "Prénom", "text", "Ex: John"],
-            ["last", "Nom", "text", "Ex: Doe"],
-            ["email", "E-Mail", "text", "Ex: john.doe@email.com"],
-            ["message", "Message", "text"],
-        ]
-        contact_modal.innerHTML = 
-            `<div class="contact_modal">` 
-            + ContactFormFactory.create(true, photographer.name, list_input)
-            + `</div>`;
+        let contact_button = document.querySelector(".contact_button");
+        contact_button.addEventListener('click', () => {
+            let contactForm = new ContactForm(photographer.name);
+            contactForm.display();
+        });
 
         return;
     }

@@ -1,8 +1,30 @@
 class Lightbox {
     constructor(idMainImage) {
+        /* Get information */
         this.listIds = this.getAllIds();
         this.idMainImage = idMainImage;
         this.htmlLightBox = document.querySelector('#lightbox_modal');
+        this.htmlLightBox.innerHTML = ``;
+
+        /* Create and append elements of the lightbox modal */
+        let buttonClose = document.createElement('button');
+        buttonClose.setAttribute('id', 'btn-close');
+        buttonClose.innerText = ' X ';
+        
+        let buttonNext = document.createElement('button');
+        buttonNext.setAttribute('id', 'btn-goNext');
+        buttonNext.innerText = ' > ';
+        
+        let buttonPrec = document.createElement('button');
+        buttonPrec.setAttribute('id', 'btn-goPrec');
+        buttonPrec.innerText = ' < ';
+
+        let divImage = document.createElement('div');
+        divImage.setAttribute('id', 'lightbox-image');
+
+        this.htmlLightBox.append(buttonClose, buttonNext, buttonPrec, divImage);
+
+        /* Init the lightbox */
         this.initEventListener();
         this.refreshImage();
     }
@@ -72,12 +94,14 @@ class Lightbox {
     refreshImage() {
         let imageLightboxDiv = document.getElementById('lightbox-image');
         imageLightboxDiv.textContent = ``;
-        let mediaToAdd = document.getElementById(this.idMainImage.toString()).firstChild;
-        
-        let mediaClone = mediaToAdd.cloneNode()
+        let mediaToAdd = document.getElementById(this.idMainImage.toString());
+
+        let mediaClone = mediaToAdd.firstChild.cloneNode()
         imageLightboxDiv.appendChild(mediaClone);
         if(mediaClone instanceof HTMLVideoElement) {
             mediaClone.controls = true;
         }
+        let titreElement = mediaToAdd.querySelector('h2').cloneNode(true);
+        imageLightboxDiv.appendChild(titreElement);
     }
 }

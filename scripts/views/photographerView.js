@@ -1,11 +1,11 @@
 class PhotographerView {
     displayPhotographer(photographer, media_photographer) {
-        let main = document.querySelector('#main');
         let contact_modal = document.querySelector('#contact_modal');
 
         /* Adapt page if error */
         if(photographer == null || media_photographer == null) {
-            main.innerHTML = `<h1>Erreur dans la récupération du photographe ou des médias</h1>`
+            let page = document.querySelector('#main');
+            page.innerHTML = `<h1>Erreur dans la récupération du photographe ou des médias</h1>`
             return;
         }
 
@@ -17,7 +17,7 @@ class PhotographerView {
         let portofolio_media = [];
         let portfolio_html = document.createElement('div');
         portfolio_html.setAttribute('id', 'portfolio');
-        
+
         /* Create Portfolio */
         for(let media of media_treated) {
             let htmlMediaElem = null;
@@ -57,32 +57,31 @@ class PhotographerView {
             likes_photographer += elem.likes;
         });
 
-        /* Write Main content */
-        main.innerHTML = `
-            <div class="photograph-header">
-                <section class="photographer-presentation">
-                    <h1>${photographer.name}</h1>
-                    <h2>${photographer.city}, ${photographer.country}</h2>
-                    <p>${photographer.tagline}</p>
-                </section>
-                <button class="contact_button" onclick="ContactFormFactory.display()">Contactez-moi</button>
-                <img src="assets/photographers/${photographer.portrait}" alt="Image de profile du photographe">
-            </div>
-            <div id="photographer-portfolio">
-                <p>Trier par : </p>
-                <div class="filtres">
-                    <div class="filtre-pop">Popularité</div>
-                    <div class="filtre-date">Date</div>
-                    <div class="filtre-titre">Titre</div>
-                </div>
-            </div>
-            <div class="photographer-likes">
-                <p>${likes_photographer}<i class="fa-solid fa-heart"></i></p>
-                <p>${photographer.price}€/jour</p>
-            </div>
-        `;
+        /* Complete presentation of the photographer */
+        let presentation = document.querySelector('.photographer-presentation');
+        let name = document.createElement('h1');
+        name.innerText = photographer.name;
+        let localization = document.createElement('h2');
+        localization.innerText = photographer.city + ', ' + photographer.country;
+        let description = document.createElement('p');
+        description.innerText = photographer.tagline;
+        presentation.append(name, localization, description);
+
+        let profile_image = document.querySelector('.photograph-header > img');
+        profile_image.src = 'assets/photographers/' + photographer.portrait;
+
+        /* Add the filter */
+        new Filter(media_treated);
+
+        /* Update portfolio of the photographer */
         let photographerPortfolioDiv = document.querySelector('#photographer-portfolio');
         photographerPortfolioDiv.appendChild(portfolio_html);
+
+        /* Complete likes informations */
+        let likeSection = document.querySelector('.photographer-likes');
+        likeSection.innerHTML = 
+            `<p>${likes_photographer}<i class="fa-solid fa-heart"></i></p>
+            <p>${photographer.price}€/jour</p>`
 
         /* Create Contact Modal Content */
         let list_input = [

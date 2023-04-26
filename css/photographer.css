@@ -79,27 +79,6 @@ main {
 #photographer-portfolio {
     margin-top: 20px;
 }
-/* Filter menu */
-#photographer-portfolio form label {
-    font-family: 'DM Sans';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 18px;
-    line-height: 23px;
-    margin-right: 10px;
-}
-
-#photographer-portfolio form select {
-    background: #911C1C;
-    border-radius: 5px;
-    color: white;
-
-    font-family: 'DM Sans';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 18px;
-    line-height: 23px;
-}
 
 /* Portfolio figures */
 #portfolio {
@@ -178,4 +157,38 @@ main {
 
 .photographer-likes i {
     margin: 0 5px;
+}
+
+/* Filtre */
+.tri {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    width: 250px;
+    margin-left: 40px;
+}
+
+.tri > p {
+    font-family: 'DM Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 23px;
+}
+
+#filtre {
+    display: block;
+    background-color: #911C1C;
+    color: #FFF;
+    border-radius: 5px;
+}
+
+#filtre > div {
+    font-family: 'DM Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 23px;
+    padding: 10px;
+    padding-right: 60px;
 }

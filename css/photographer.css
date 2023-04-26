@@ -192,3 +192,11 @@ main {
     padding: 10px;
     padding-right: 60px;
 }
+
+#filtre > img {
+    position: relative;
+    top: 0;
+    right: 0;
+    border: 2px solid black;
+    background-color: green;
+}

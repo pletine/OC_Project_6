@@ -8,13 +8,8 @@
     background-color: white;
 }
 
-#lightbox_modal button {
-    color: red;
-    border: none;
-    background-color: white;
-    backdrop-filter: brightness(60%);
-    font-size: xx-large;
-    z-index: 11;
+#lightbox_modal > img {
+    z-index: 20;
     cursor: pointer;
 }
 

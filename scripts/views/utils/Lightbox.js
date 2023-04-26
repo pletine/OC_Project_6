@@ -7,17 +7,20 @@ class Lightbox {
         this.htmlLightBox.innerHTML = ``;
 
         /* Create and append elements of the lightbox modal */
-        let buttonClose = document.createElement('button');
+        let buttonClose = document.createElement('img');
         buttonClose.setAttribute('id', 'btn-close');
-        buttonClose.innerText = ' X ';
+        buttonClose.src = 'assets/icons/closeLightbox.svg';
+        buttonClose.alt = 'Fermer la Lightbox';
         
-        let buttonNext = document.createElement('button');
+        let buttonNext = document.createElement('img');
         buttonNext.setAttribute('id', 'btn-goNext');
-        buttonNext.innerText = ' > ';
+        buttonNext.src = 'assets/icons/arrowRight.svg';
+        buttonNext.alt = 'Voir image suivante';
         
-        let buttonPrec = document.createElement('button');
+        let buttonPrec = document.createElement('img');
         buttonPrec.setAttribute('id', 'btn-goPrec');
-        buttonPrec.innerText = ' < ';
+        buttonPrec.src = 'assets/icons/arrowLeft.svg';
+        buttonPrec.alt = 'Voir image précedente';
 
         let divImage = document.createElement('div');
         divImage.setAttribute('id', 'lightbox-image');

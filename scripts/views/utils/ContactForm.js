@@ -18,10 +18,9 @@ class ContactForm  {
         this.contactDiv.innerHTML =
             `<header>
                 <h2>Contactez-moi<br/>${namePhotographer}</h2>
-                <img src="assets/icons/close.svg"/>
+                <img src="assets/icons/closeContactForm.svg"/>
             </header>
-            <form name="contact_form" action="" method=get
-                onsubmit="return validate();">
+            <form name="contact_form" action="" method=get>
             </form>`;
         
         let formDiv = this.contactDiv.querySelector('form');
@@ -54,6 +53,12 @@ class ContactForm  {
         let closeButton = this.contactDiv.querySelector('header > img');
         closeButton.addEventListener('click', () => {
             this.close();
+        });
+
+        let submitForm = document.querySelector('.contact_button');
+        submitForm.addEventListener('click', (event) => {
+            event.preventDefault();
+            console.log('SubmitForm');
         });
     }
 }

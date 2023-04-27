@@ -4,28 +4,18 @@ class Lightbox {
         this.listIds = this.getAllIds();
         this.idMainImage = idMainImage;
         this.htmlLightBox = document.querySelector('#lightbox_modal');
-        this.htmlLightBox.innerHTML = ``;
-
-        /* Create and append elements of the lightbox modal */
-        let buttonClose = document.createElement('img');
-        buttonClose.setAttribute('id', 'btn-close');
-        buttonClose.src = 'assets/icons/closeLightbox.svg';
-        buttonClose.alt = 'Fermer la Lightbox';
-        
-        let buttonNext = document.createElement('img');
-        buttonNext.setAttribute('id', 'btn-goNext');
-        buttonNext.src = 'assets/icons/arrowRight.svg';
-        buttonNext.alt = 'Voir image suivante';
-        
-        let buttonPrec = document.createElement('img');
-        buttonPrec.setAttribute('id', 'btn-goPrec');
-        buttonPrec.src = 'assets/icons/arrowLeft.svg';
-        buttonPrec.alt = 'Voir image précedente';
-
-        let divImage = document.createElement('div');
-        divImage.setAttribute('id', 'lightbox-image');
-
-        this.htmlLightBox.append(buttonClose, buttonNext, buttonPrec, divImage);
+        this.htmlLightBox.innerHTML = `
+            <img id='btn-close'
+                src='assets/icons/closeLightbox.svg'
+                alt='Fermer la Lightbox' />
+            <img id='btn-goNext'
+                src='assets/icons/arrowRight.svg'
+                alt='Voir image suivante' />
+            <img id='btn-goPrec'
+                src='assets/icons/arrowLeft.svg'
+                alt='Voir image précedente' />
+            <div id='lightbox-image'></div>
+        `;
 
         /* Init the lightbox */
         this.initEventListener();

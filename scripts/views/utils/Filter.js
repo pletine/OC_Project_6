@@ -1,9 +1,7 @@
 class Filter {
-    constructor(photographerFirstName, mediaList) {
-        this.mediaList = mediaList;
-        this.photographerFirstName = photographerFirstName;
-        console.log(mediaList);
+    constructor() {
         this.htmlFilter = document.querySelector('#filtre');
+        this.status = false; // True = open, False = closed
 
         let filtrePop = document.createElement('div');
         filtrePop.setAttribute('id', 'filtre-pop');
@@ -24,50 +22,30 @@ class Filter {
         this.htmlFilter.append(fleche, filtrePop, filtreDate, filtreTitre);
 
         this.initEventListener();
-
-        this.portfolio = new Portfolio(this.photographerFirstName, this.mediaList);
-        return this.portfolio;
     }
 
     initEventListener() {
         let filtrePop = document.querySelector('#filtre-pop');
-        filtrePop.addEventListener('click', (event) => {
-            console.log(event.target);
-            this.mediaList.sort(function (a, b) {
-                return a.likes - b.likes;
-            });
-            this.portfolio = new Portfolio(this.photographerFirstName, this.mediaList);
+        filtrePop.addEventListener('click', (e) => {
+            const event = new CustomEvent("filterClick", 
+                {detail: {data: 'Populaire'}});
+            window.dispatchEvent(event);
         });
 
         let filtreDate = document.querySelector('#filtre-date');
-        filtreDate.addEventListener('click', (event) => {
-            console.log(event.target);
-
+        filtreDate.addEventListener('click', (e) => {
+            const event = new CustomEvent("filterClick", 
+                {detail: {data: 'Date'}});
+            window.dispatchEvent(event);
         });
 
         let filtreTitres = document.querySelector('#filtre-titres');
-        filtreTitres.addEventListener('click', (event) => {
-            console.log(event.target);
-            this.mediaList.sort(function(a, b) {
-                let titre1 = a.title.toUpperCase();
-                let titre2 = b.title.toUpperCase();
-
-                if (titre1 < titre2) {
-                    return -1;
-                }
-                if (titre1 > titre2) {
-                    return 1;
-                }
-                // Les titres sont égaux
-                return 0;
-            });
-            this.portfolio = new Portfolio(this.photographerFirstName, this.mediaList);
+        filtreTitres.addEventListener('click', (e) => {
+            const event = new CustomEvent("filterClick", 
+                {detail: {data: 'Titres'}});
+            window.dispatchEvent(event);
         });
     }
-
-    // refreshPortfolio() {
-    //     let portfolio = document.querySelector('#photographer-portfolio');
-    // }
 
     open() {
 

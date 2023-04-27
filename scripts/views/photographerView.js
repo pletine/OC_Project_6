@@ -8,7 +8,46 @@ class PhotographerView {
         let firstName = photographer.name.split(' ')[0].replace('-', ' ');
 
         /* Create Filter which create the Portfolio */
-        let portfolio = new Filter(firstName, media_photographer);
+        let media_treated = media_photographer;
+        let portfolio = new Portfolio(firstName, media_photographer);
+        let filter = new Filter();
+
+        window.addEventListener('filterClick', (event) => {
+            switch(event.detail.data) {
+                case 'Populaire':
+                    media_treated.sort(function(a, b) {
+                        return  b.likes - a.likes;
+                    });
+                    portfolio = new Portfolio(firstName, media_treated);
+                    break;
+                case 'Date':
+                    media_treated.sort(function(a, b) {
+                        let dateA = new Date(a.date);
+                        let dateB = new Date(b.date);
+                        return dateB - dateA;
+                    });
+                    portfolio = new Portfolio(firstName, media_treated);
+                    break;
+                case 'Titres':
+                    media_treated.sort(function(a, b) {
+                        let titleA = a.title.toUpperCase();
+                        let titleB = b.title.toUpperCase();
+
+                        if (titleA < titleB) {
+                            return -1;
+                        }
+                        if (titleA > titleB) {
+                            return 1;
+                        }
+                        return 0; // Les titres sont égaux
+                    });
+                    portfolio = new Portfolio(firstName, media_treated);
+                    break;
+                default:
+                    console.log('Filtre inconnu');
+                    break;
+            }
+        });
 
         /* Complete presentation of the photographer */
         document.querySelector('.photographer-presentation').innerHTML = `
@@ -17,9 +56,6 @@ class PhotographerView {
             <p>${photographer.tagline}</p>
         `;
         document.querySelector('.photograph-header > img').src = 'assets/photographers/' + photographer.portrait;
-
-        /* Update portfolio of the photographer */
-        document.querySelector('#photographer-portfolio').appendChild(portfolio.html);
 
         /* Complete likes informations */
         let likeSection = document.querySelector('.photographer-likes');
@@ -34,9 +70,5 @@ class PhotographerView {
         });
 
         return;
-    }
-
-    createPortfolio() {
-        
     }
 }

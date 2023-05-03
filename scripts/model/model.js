@@ -26,13 +26,20 @@ class Model {
      */
     async getData() {
         if(this.data == null) {
-            const response = await fetch('/data/photographers.json', {
-                method: 'GET',
-                headers: {
-                    'Accept': 'application/json',
-                },
-            });
-            this.data = await response.json();
+            const dataLocalStorage = JSON.parse(window.localStorage.getItem('data'));
+
+            if(dataLocalStorage === null) {
+                const response = await fetch('/data/photographers.json', {
+                    method: 'GET',
+                    headers: {
+                        'Accept': 'application/json',
+                    },
+                });
+                this.data = await response.json();
+                window.localStorage.setItem('data', JSON.stringify(this.data))
+            } else {
+                this.data = dataLocalStorage;
+            }
         }
     }
 

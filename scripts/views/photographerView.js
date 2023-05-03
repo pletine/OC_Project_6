@@ -14,13 +14,13 @@ class PhotographerView {
 
         window.addEventListener('filterClick', (event) => {
             switch(event.detail.data) {
-                case 'Populaire':
+                case filter.sections[0].title: // Filtre Popularité
                     media_treated.sort(function(a, b) {
                         return  b.likes - a.likes;
                     });
                     portfolio = new Portfolio(firstName, media_treated);
                     break;
-                case 'Date':
+                case filter.sections[1].title: // Filtre Date
                     media_treated.sort(function(a, b) {
                         let dateA = new Date(a.date);
                         let dateB = new Date(b.date);
@@ -28,7 +28,7 @@ class PhotographerView {
                     });
                     portfolio = new Portfolio(firstName, media_treated);
                     break;
-                case 'Titres':
+                case filter.sections[2].title: // Filtre Titres
                     media_treated.sort(function(a, b) {
                         let titleA = a.title.toUpperCase();
                         let titleB = b.title.toUpperCase();
@@ -47,6 +47,13 @@ class PhotographerView {
                     console.log('Filtre inconnu');
                     break;
             }
+            console.log(event.detail.data);
+            filter.close(filter.sections.findIndex((e) => e.title === event.detail.data));
+        });
+
+        window.addEventListener('lightboxCreation', (event) => {
+            let lightbox = new Lightbox(event.detail.data);
+            lightbox.display();
         });
 
         /* Complete presentation of the photographer */

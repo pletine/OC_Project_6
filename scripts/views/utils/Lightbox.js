@@ -40,6 +40,7 @@ class Lightbox {
     }
 
     initEventListener() {
+        /* Events click on button */
         let goPrec = document.querySelector('#btn-goPrec');
         goPrec.addEventListener('click', () => {
             this.goLeft();
@@ -51,6 +52,40 @@ class Lightbox {
         let close = document.querySelector('#btn-close');
         close.addEventListener('click', () => {
             this.close();
+        });
+
+        /* Event keyboard used */
+        window.addEventListener('keydown', (event) => {
+            if (event.defaultPrevented) {
+                return; // Do nothing if the event was already processed
+            }
+            console.log(event.key);
+            switch (event.key) {
+                case 'Escape':
+                    this.close();
+                    break;
+                case 'ArrowRight':
+                    this.goRight();
+                    break;
+                case 'ArrowLeft':
+                    this.goLeft();
+                    break;
+                case ' ':
+                    let currentMedia = document.getElementById(this.idMainImage.toString()).firstChild;
+                    if(currentMedia instanceof HTMLVideoElement) {
+                        console.log(currentMedia);
+                        currentMedia.focus();
+                        currentMedia.play().then(
+                            console.log('Video play')
+                        )
+                        .catch((error) =>
+                            console.log('Fail play: ' + error)
+                        );
+                    }
+                    break;
+                default:
+                    break;
+            }
         });
     }
 

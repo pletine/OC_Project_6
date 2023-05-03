@@ -10,8 +10,9 @@ class Portfolio {
         for(let media of mediaList) {
             media.html = MediaFactory.create(photographerFirstName, media);
             media.html.addEventListener('click', (event) => {
-                let currentLightBox = new Lightbox(event.target.parentNode.id);
-                currentLightBox.display();
+                const eventLightbox = new CustomEvent("lightboxCreation", 
+                    {detail: {data:event.target.parentNode.id}});
+                window.dispatchEvent(eventLightbox);
             });
             this.html.appendChild(MediaFactory.createFigure(media));
             this.photographerLikes += media.likes;

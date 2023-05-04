@@ -1,7 +1,6 @@
 @import url("contactModal.css");
 @import url("lightbox.css");
 
-
 #contact_modal, #lightbox_modal {
     display: none;
 }

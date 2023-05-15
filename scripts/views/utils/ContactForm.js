@@ -49,6 +49,11 @@ class ContactForm {
     close() {
         this.htmlContactForm.style.display = "none";
         document.body.style.overflow = 'auto';
+        let validationMessage = document.querySelector('.validMessage');
+        if(validationMessage) {
+            this.contactDiv.removeChild(validationMessage);
+        }
+        this.form.reset();
     }
 
     initEventListener() {
@@ -74,15 +79,18 @@ class ContactForm {
         const firstName = document.getElementById('firstname');
         const lastName = document.getElementById('lastname');
         const eMail = document.getElementById('email');
+        const message = document.getElementById('message');
 
         // Add listener to prevent default action
         firstName.addEventListener("invalid", (event) => { event.preventDefault(); });
         lastName.addEventListener("invalid", (event) => { event.preventDefault(); });
         eMail.addEventListener("invalid", (event) => { event.preventDefault(); });
+        message.addEventListener("invalid", (event) => { event.preventDefault(); });
 
         formValid &= this.checkName(firstName);
         formValid &= this.checkName(lastName);
         formValid &= this.checkEmail(eMail);
+        formValid &= this.checkMessage(message);
 
         if (formValid) {
             console.log('Formulaire complet');
@@ -94,12 +102,19 @@ class ContactForm {
             this.cleanInput(firstName);
             this.cleanInput(lastName);
             this.cleanInput(eMail);
-            this.close();
+            this.cleanInput(message);
+
+            let validationMessage = document.createElement('p');
+            validationMessage.innerText = `Message Envoyé !`;
+            validationMessage.classList.add('validMessage')
+            validationMessage.style.backgroundColor = 'white';
+            this.contactDiv.appendChild(validationMessage);
         } else {
             // Add Event listener on inputs
             if (!firstName.oninput) { firstName.oninput = this.checkName(firstName) };
             if (!lastName.oninput) { lastName.oninput = this.checkName(lastName) };
             if (!eMail.oninput) { eMail.oninput = this.checkEmail(eMail) };
+            if (!message.oninput) { message.oninput = this.checkMessage(message) };
         }
 
         return formValid;
@@ -234,6 +249,26 @@ class ContactForm {
         return retValue;
     }
 
+    /** checkMessage
+     * Check if the message is empty
+     */
+    checkMessage(element) {
+        let retValue = true;
+        let inputText = element.value;
+        let minLength = 10; // Au moins 10 caractères
+
+        if (inputText.length < minLength) {
+            this.colorValidInput(element, false);
+            this.printErrorMessage(element, "Votre adresse mail doit être valide");
+            retValue = false; // Error in sentence
+        } else {
+            this.colorValidInput(element, true);
+            this.hideErrorMessage(element);
+            retValue = true; // No error in sentence
+        }
+
+        return retValue;
+    }
 
     /** resetModal
      * Reset the modal to autorize inscription of a new person

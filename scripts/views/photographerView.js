@@ -94,6 +94,37 @@ class PhotographerView {
         document.querySelector(".contact_button").addEventListener('click', () => {
             this.contactForm.display();
         });
+
+        /* Event keyboard used */
+        window.addEventListener('keydown', (event) => {
+            if (event.defaultPrevented) {
+                return; // Do nothing if the event was already processed
+            }
+            switch (event.key) {
+                case 'Escape':
+                    this.lightbox.close();
+                    this.contactForm.close();
+                    break;
+                case 'ArrowRight':
+                    this.lightbox.goRight();
+                    break;
+                case 'ArrowLeft':
+                    this.lightbox.goLeft();
+                    break;
+                case ' ':
+                    let currentMedia = document.querySelector('#lightbox_modal video');
+                    if(currentMedia) {
+                        if(currentMedia.paused) {
+                            currentMedia.play();
+                        } else {
+                            currentMedia.pause();
+                        }
+                    }
+                    break;
+                default:
+                    break;
+            }
+        });
     }
 
     initLikeListener() {

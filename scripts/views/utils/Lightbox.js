@@ -61,38 +61,6 @@ class Lightbox {
         close.addEventListener('click', () => {
             this.close();
         });
-
-        /* Event keyboard used */
-        window.addEventListener('keydown', (event) => {
-            // Vérifier si event.target est enfant de la lightbox
-            
-            if (event.defaultPrevented) {
-                return; // Do nothing if the event was already processed
-            }
-            switch (event.key) {
-                case 'Escape':
-                    this.close();
-                    break;
-                case 'ArrowRight':
-                    this.goRight();
-                    break;
-                case 'ArrowLeft':
-                    this.goLeft();
-                    break;
-                case ' ':
-                    let currentMedia = document.querySelector('#lightbox_modal video');
-                    if(currentMedia) {
-                        if(currentMedia.paused) {
-                            currentMedia.play();
-                        } else {
-                            currentMedia.pause();
-                        }
-                    }
-                    break;
-                default:
-                    break;
-            }
-        });
     }
 
     goLeft() {

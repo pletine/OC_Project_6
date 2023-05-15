@@ -9,6 +9,9 @@ class PhotographerView {
 
         /* Create Filter which create the Portfolio */
         this.media_treated = media_photographer;
+        this.media_treated.sort(function(a, b) { // Organize media for the first filter which is Popularity
+            return  b.likes - a.likes;
+        });
         this.portfolio = new Portfolio(this.firstName, media_photographer);
         this.lightbox = new Lightbox();
         this.filter = new Filter();

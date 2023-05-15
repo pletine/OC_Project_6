@@ -57,7 +57,7 @@ main {
 .photograph-header img {
     border-radius: 50%;
     object-fit: cover;
-    width: 20%;
+    height: 15em;
     aspect-ratio: 1/1;
 }
 
@@ -184,6 +184,7 @@ main {
     color: #FFF;
     border-radius: 5px;
     justify-content: center;
+    z-index: 10;
 }
 
 #filtre > div {
@@ -194,7 +195,7 @@ main {
     line-height: 23px;
     padding: 20px;
     padding-right: 70px;
-    z-index: 5;
+    z-index: 50;
     cursor: pointer;
 }
 

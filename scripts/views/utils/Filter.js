@@ -41,7 +41,7 @@ class Filter {
 
     initEventListener() {
         for (let i = 0; i < this.sections.length; i++) {
-            this.sectionsHTML[i].addEventListener('click', () => {
+            this.sectionsHTML[i].addEventListener('click', (event) => {
                 const eventFilter = new CustomEvent('filterClick',
                     { detail: { data: this.sections[i].title } });
                 window.dispatchEvent(eventFilter);

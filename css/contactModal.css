@@ -88,11 +88,11 @@
 
 /* Style for input validation */
 .input_valid {
-    border: 6px solid #004d05;
+    border: 6px solid #004d05 !important;
 }
 
 .input_error {
-    border: 6px solid #5c0009;
+    border: 6px solid #5c0009 !important;
 }
 
 .error_message {

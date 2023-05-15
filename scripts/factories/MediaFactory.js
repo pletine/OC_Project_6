@@ -25,8 +25,9 @@ class MediaFactory {
         let figcaption = document.createElement('figcaption');
         figcaption.innerHTML = 
             `<h2>${elem.title}</h2>
-            <p>${elem.likes}
-                <i class="fa-solid fa-heart"></i>
+            <p>
+                <span>${elem.likes}</span>
+                <i class="fa-regular fa-heart"></i>
             </p>`;
 
         figure.appendChild(elem.html);

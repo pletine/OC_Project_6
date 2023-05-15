@@ -26,6 +26,8 @@
     justify-content: space-between;
     padding: 35px;
     margin: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 .contact_modal header {
@@ -69,9 +71,9 @@
 .contact_modal form input {
     width: 100%;
     height: 2rem;
-    border: none;
     border-radius: 5px;
     font-size: 1.4rem;
+    border: none;
 }
 
 .contact_modal form input[name="message"] {
@@ -82,4 +84,25 @@
     margin-top: 20px;
     width: 40%;
     height: 3em;
+}
+
+/* Style for input validation */
+.input_valid {
+    border: 6px solid #004d05;
+}
+
+.input_error {
+    border: 6px solid #5c0009;
+}
+
+.error_message {
+    color: #7c000c;
+    background-color: #fcdede;
+    display: block;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    font-family: Roboto, sans-serif;
+    padding: 10px;
+    line-height: 30px !important;
 }

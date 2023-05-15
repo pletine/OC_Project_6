@@ -1,8 +1,8 @@
 class Lightbox {
-    constructor(idMainImage) {
+    constructor() {
         /* Get information */
         this.listIds = this.getAllIds();
-        this.idMainImage = idMainImage;
+        this.idMainImage = 0;
         this.htmlLightBox = document.querySelector('#lightbox_modal');
         this.htmlLightBox.innerHTML = `
             <img id='btn-close'
@@ -19,15 +19,21 @@ class Lightbox {
 
         /* Init the lightbox */
         this.initEventListener();
-        this.refreshImage();
     }
 
     display() {
         this.htmlLightBox.style.display = "block";
+        document.body.style.overflow = 'hidden';
     }
     
     close() {
         this.htmlLightBox.style.display = "none";
+        document.body.style.overflow = 'auto';
+    }
+
+    changeImage(idImage) {
+        this.idMainImage = idImage;
+        this.refreshImage();
     }
 
     getAllIds() {
@@ -56,10 +62,11 @@ class Lightbox {
 
         /* Event keyboard used */
         window.addEventListener('keydown', (event) => {
+            // Vérifier si event.target est enfant de la lightbox
+            
             if (event.defaultPrevented) {
                 return; // Do nothing if the event was already processed
             }
-            console.log(event.key);
             switch (event.key) {
                 case 'Escape':
                     this.close();
@@ -71,16 +78,13 @@ class Lightbox {
                     this.goLeft();
                     break;
                 case ' ':
-                    let currentMedia = document.getElementById(this.idMainImage.toString()).firstChild;
-                    if(currentMedia instanceof HTMLVideoElement) {
-                        console.log(currentMedia);
-                        currentMedia.focus();
-                        currentMedia.play().then(
-                            console.log('Video play')
-                        )
-                        .catch((error) =>
-                            console.log('Fail play: ' + error)
-                        );
+                    let currentMedia = document.querySelector('#lightbox_modal video');
+                    if(currentMedia) {
+                        if(currentMedia.paused) {
+                            currentMedia.play();
+                        } else {
+                            currentMedia.pause();
+                        }
                     }
                     break;
                 default:

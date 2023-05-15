@@ -14,7 +14,9 @@ class Lightbox {
             <img id='btn-goPrec'
                 src='assets/icons/arrowLeft.svg'
                 alt='Voir image précedente' />
-            <div id='lightbox-image'></div>
+            <div class='lightbox'>
+                <div id='lightbox-image'></div>
+            </div>
         `;
 
         /* Init the lightbox */

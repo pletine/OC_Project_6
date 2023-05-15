@@ -6,6 +6,9 @@
     height: 100%;
     z-index: 10;
     background-color: white;
+
+    display: flex;
+    justify-content: center;
 }
 
 #lightbox_modal > img {
@@ -38,16 +41,21 @@
     right: 10%;
 }
 
-#lightbox-image {
-    display: flex;
-    flex-flow: column nowrap;
-    position: fixed;
-    top: 5%;
-    height: 90%;
-    width: 60%;
+.lightbox {
+    height: 100%;
     margin-left: 20%;
     margin-right: 20%;
+    display: flex;
     justify-content: center;
+}
+
+#lightbox-image {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    height: 90%;
+    max-width: 100%;
+    margin: auto;
 }
 
 #lightbox-image > img,

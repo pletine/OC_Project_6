@@ -16,7 +16,7 @@ class Filter {
     initHtml() {
         let fleche_img = document.createElement('img');
         fleche_img.src = 'assets/icons/arrowFilter.svg';
-        fleche_img.alt = 'open or close the filter options';
+        fleche_img.alt = 'Ouvrir ou fermer les options de filtre';
         this.arrow = fleche_img;
         this.arrow.setAttribute('tabindex', '3');
 
@@ -25,6 +25,7 @@ class Filter {
             let sectionHTML = document.createElement('div');
             sectionHTML.setAttribute('id', section.id);
             sectionHTML.innerText = section.title;
+            sectionHTML.alt = "Filtre " + section.title;
             this.sectionsHTML.push(sectionHTML);
         }
 

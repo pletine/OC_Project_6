@@ -18,7 +18,7 @@ class ContactForm {
         this.contactDiv.innerHTML =
             `<header>
                 <h2>Contactez-moi<br/>${namePhotographer}</h2>
-                <img src="assets/icons/closeContactForm.svg"/>
+                <img src="assets/icons/closeContactForm.svg" alt="Fermer la modale">
             </header>
             <form name="contact_form" action="" method=get onsubmit="event.preventDefault();">
             </form>`;

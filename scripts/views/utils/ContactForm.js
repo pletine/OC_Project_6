@@ -53,7 +53,7 @@ class ContactForm {
         if(validationMessage) {
             this.contactDiv.removeChild(validationMessage);
         }
-        this.form.reset();
+        if(this.form) {this.form.reset();}
     }
 
     initEventListener() {

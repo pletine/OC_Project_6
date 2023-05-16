@@ -10,7 +10,6 @@ class Filter {
 
         this.initHtml();
         this.initEventListener();
-        this.orderFilterHTML();
         this.close(this.activeFilterIndex);
     }
 
@@ -19,6 +18,7 @@ class Filter {
         fleche_img.src = 'assets/icons/arrowFilter.svg';
         fleche_img.alt = 'open or close the filter options';
         this.arrow = fleche_img;
+        this.arrow.setAttribute('tabindex', '3');
 
         this.sectionsHTML = [];
         for (let section of this.sections) {
@@ -60,6 +60,8 @@ class Filter {
     orderFilterHTML() {
         this.htmlFilter.append(this.arrow);
         this.htmlFilter.append(this.sectionsHTML[this.activeFilterIndex]);
+        this.sectionsHTML[this.activeFilterIndex].setAttribute('tabindex', '4');
+        let tabIndexNum = 5;
         let j = 0;
         for (let i = 0; i < this.sectionsHTML.length; i++) {
             if (this.linesHtml[j]) {
@@ -68,11 +70,14 @@ class Filter {
             if (i !== this.activeFilterIndex) {
                 this.htmlFilter.append(this.sectionsHTML[i]);
                 j++;
+                this.sectionsHTML[i].setAttribute('tabindex', tabIndexNum);
+                tabIndexNum++;
             }
         }
     }
 
     open() {
+        this.orderFilterHTML();
         for (let section of this.sections) {
             let sectionHTML = document.getElementById(section.id);
             sectionHTML.style.display = 'block';
@@ -87,20 +92,20 @@ class Filter {
 
     close(nameFilterKeepID) {
         this.activeFilterIndex = nameFilterKeepID;
-
+        this.orderFilterHTML();
+        
         for (let section of this.sections) {
             let sectionHTML = document.getElementById(section.id);
 
             if (section.title !== this.sections[nameFilterKeepID].title) {
                 sectionHTML.style.display = 'none';
             }
+            sectionHTML.removeAttribute('tabindex');
         }
         let lines = document.getElementsByClassName('filter-line');
         for (let line of lines) {
             line.style.display = 'none';
         }
-
-        this.orderFilterHTML();
 
         this.arrow.style.transform = 'rotate(0)';
         this.status = false;

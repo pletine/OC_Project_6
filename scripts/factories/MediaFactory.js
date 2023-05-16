@@ -1,8 +1,9 @@
 class MediaFactory {
-    static create(photographerFirstName, media) {
+    static create(photographerFirstName, media, tabindexNum) {
         if(media.image) {
             let htmlElem = document.createElement('img');
             htmlElem.src = 'assets/images/' + photographerFirstName + '/' + media.image;
+            htmlElem.setAttribute('tabindex', tabindexNum);
             return htmlElem;
         } else if(media.video) {
             let htmlElem = document.createElement('video');
@@ -10,6 +11,7 @@ class MediaFactory {
             htmlElem.type = 'video/mp4';
             htmlElem.muted = true;
             htmlElem.controls = false;
+            htmlElem.setAttribute('tabindex', tabindexNum);
             return htmlElem;
         } else {
             let error = document.createElement('img');
@@ -18,7 +20,7 @@ class MediaFactory {
         }
     }
 
-    static createFigure(elem) {
+    static createFigure(elem, tabindexNum) {
         let figure = document.createElement('figure');
         figure.setAttribute('id', elem.id);
 
@@ -27,7 +29,7 @@ class MediaFactory {
             `<h2>${elem.title}</h2>
             <p>
                 <span>${elem.likes}</span>
-                <i class="fa-regular fa-heart"></i>
+                <i class="fa-regular fa-heart" tabindex="${tabindexNum}"></i>
             </p>`;
 
         figure.appendChild(elem.html);

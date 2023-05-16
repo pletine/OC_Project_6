@@ -74,6 +74,10 @@ main {
     cursor: pointer;
 }
 
+.contact_button:focus {
+    outline: 5px solid #DB8876;
+}
+
 /* Photographer media */
 #photographer-portfolio {
     margin-top: 80px;
@@ -98,6 +102,11 @@ main {
     object-fit: cover;
     overflow: hidden;
     cursor: pointer;
+}
+
+#portfolio figure img:focus,
+#portfolio figure video:focus {
+    outline: 2px solid #901C1C;
 }
 
 #portfolio figure figcaption {
@@ -131,6 +140,12 @@ main {
 #portfolio figure figcaption p i {
     margin-left: 5px;
     cursor: pointer;
+}
+
+#portfolio figure figcaption p i:focus {
+    outline: 3px solid #DB8876;
+    padding: 3px;
+    border-radius: 25px;
 }
 
 /* Photographer likes */

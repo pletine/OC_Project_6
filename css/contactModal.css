@@ -41,6 +41,12 @@
     cursor: pointer;
 }
 
+.contact_modal header img:focus {
+    outline: 3px solid #FFF;
+    padding: 5px;
+    border-radius: 25px;
+}
+
 .contact_modal header h2 {
     font-size: 50px;
     font-weight: normal;
@@ -84,6 +90,12 @@
     margin-top: 20px;
     width: 40%;
     height: 3em;
+}
+
+.contact_button:focus {
+    outline: 5px solid #FFF;
+    border: 5px solid #FFF;
+    border-radius: 25px;
 }
 
 /* Style for input validation */

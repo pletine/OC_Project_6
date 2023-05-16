@@ -26,11 +26,21 @@ class Lightbox {
     display() {
         this.htmlLightBox.style.display = "block";
         document.body.style.overflow = 'hidden';
+
+        savedTabindex.disableTabindex();
+        document.getElementById('btn-close').setAttribute('tabindex', 1);
+        document.getElementById('btn-goPrec').setAttribute('tabindex', 2);
+        document.getElementById('btn-goNext').setAttribute('tabindex', 3);
     }
     
     close() {
         this.htmlLightBox.style.display = "none";
         document.body.style.overflow = 'auto';
+
+        document.getElementById('btn-close').removeAttribute('tabindex');
+        document.getElementById('btn-goPrec').removeAttribute('tabindex');
+        document.getElementById('btn-goNext').removeAttribute('tabindex');
+        savedTabindex.enableTabindex();
     }
 
     changeImage(idImage) {

@@ -44,6 +44,16 @@ class ContactForm {
     display() {
         this.htmlContactForm.style.display = "block";
         document.body.style.overflow = 'hidden';
+        savedTabindex.disableTabindex();
+
+        document.querySelector('.contact_modal header img').setAttribute('tabindex', 1);
+        let inputsForm = document.querySelectorAll('.contact_modal input');
+        let tabIndexNum = 2;
+        inputsForm.forEach((input) => {
+            input.setAttribute('tabindex', tabIndexNum);
+            tabIndexNum++;
+        });
+        document.querySelector('.contact_button').setAttribute('tabindex', tabIndexNum);
     }
 
     close() {
@@ -54,6 +64,10 @@ class ContactForm {
             this.contactDiv.removeChild(validationMessage);
         }
         if(this.form) {this.form.reset();}
+
+        document.querySelectorAll('[tabindex]:not([tabindex="-1"])').forEach((elem) => {
+            elem.removeAttribute('tabindex')});
+        savedTabindex.enableTabindex();
     }
 
     initEventListener() {

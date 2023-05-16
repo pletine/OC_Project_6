@@ -105,6 +105,8 @@ class PhotographerView {
                     let activeElemTag = activeElem.tagName.toLowerCase();
                     let activeElemId = activeElem.id;
                     let filtreDiv = document.getElementById('filtre');
+                    let contactModal = document.getElementById('contact_modal');
+                    let lightbox = document.getElementById('lightbox_modal');
 
                     if(filtreDiv.contains(activeElem)) {
                         if(activeElemTag === 'img') {
@@ -120,6 +122,19 @@ class PhotographerView {
                             this.filter.close(this.filter.sections.findIndex((e) => e.title === filterTitle));
                         } else {
                             console.log('Cas non prévu');
+                        }
+                    } else if(contactModal.contains(activeElem)) {
+                        if(activeElemTag === 'img') {
+                            this.contactForm.close();
+                        }
+                    } else if(lightbox.contains(activeElem)) {
+                        console.log(activeElemId);
+                        if(activeElemId === 'btn-close') {
+                            this.lightbox.close();
+                        } else if(activeElemId === 'btn-goNext') {
+                            this.lightbox.goRight();
+                        } else if(activeElemId === 'btn-goPrec') {
+                            this.lightbox.goLeft();
                         }
                     } else if(activeElemTag === 'img') {
                         this.lightbox.changeImage(activeElem.parentNode.id);

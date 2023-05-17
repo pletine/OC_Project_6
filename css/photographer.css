@@ -85,9 +85,9 @@ main {
 
 /* Portfolio figures */
 #portfolio {
-    display: inline-flex;
+    display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: flex-start;
 }
 
 #portfolio figure {
